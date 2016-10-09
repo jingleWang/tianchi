@@ -5,11 +5,11 @@ import os
 
 start_time = time.time()
 print("start")
-#连接数据库
+#connect the mysql
 try:
     conn = db.connect(host="xxbird.cn",user="tianchi",passwd="123456",db="tianchi")  
 except:
-    print("无法连接数据库!")
+    print("Fail to connect the mysql!")
     end_time = time.time()
     print("start from %s"%(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(start_time))))
     print("quit at %s"%(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(end_time))))
@@ -17,33 +17,33 @@ except:
 
 try:
     with conn.cursor() as cursor:
-        # 新建数据表
+        # create new table
         time.clock()
         try:
             sql = "create table timesOfBuying(user_id varchar(20) primary key,times int)"
             cursor.execute(sql)
             conn.commit()
-            print("成功创建表！","(",str(time.clock()),"s)")
+            print("Success to create new table","(",str(time.clock()),"s)")
         except:
-            print("无法新建表！","(",str(time.clock()),"s)")
+            print("Fail to creat table","(",str(time.clock()),"s)")
             exit()
 
-        #获得所有用户
+        #fetch all users
         try:
             time.clock()
             sql = "select distinct user_id from user_item limit"
             cursor.execute(sql)
             conn.commit()
             users=cursor.fetchall()
-            print("获得"+str(len(users))+"个用户成功！","(",str(time.clock()),"s)")
+            print("Success to get "+str(len(users))+" users！","(",str(time.clock()),"s)")
         except:
-            print("获取用户失败！","(",str(time.clock()),")")
+            print("Fail to fetch users！","(",str(time.clock()),")")
             exit()
 
         
         
-        #统计每个用户购买次数并写入数据库
-        print("开始统计每个用户的购买次数：")
+        #get the times of Buying of all users and insert into mysql
+        print("start getting the times of buying")
         for user in users:
             t0 = time.clock()
             sql = "select count(*) from user_item where type=4 and user_id='%s'" % user[0]
