@@ -31,7 +31,7 @@ try:
         #fetch all users
         try:
             time.clock()
-            sql = "select distinct user_id from user_item limit"
+            sql = "select distinct user_id from user_item"
             cursor.execute(sql)
             conn.commit()
             users=cursor.fetchall()
