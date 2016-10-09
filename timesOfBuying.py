@@ -25,7 +25,7 @@ try:
             conn.commit()
             print("Success to create new table","(",str(time.clock()),"s)")
         except:
-            print("Fail to creat table","(",str(time.clock()),"s)")
+            print("Fail to create table","(",str(time.clock()),"s)")
             exit()
 
         #fetch all users
