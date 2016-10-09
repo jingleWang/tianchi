@@ -1,4 +1,4 @@
-import pymysql as db
+﻿import pymysql as db
 import time
 import datetime
 import os
