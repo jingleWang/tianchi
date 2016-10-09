@@ -35,9 +35,9 @@ try:
             cursor.execute(sql)
             conn.commit()
             users=cursor.fetchall()
-            print("Success to get "+str(len(users))+" users！","(",str(time.clock()),"s)")
+            print("Success to get "+str(len(users))+" users!","(",str(time.clock()),"s)")
         except:
-            print("Fail to fetch users！","(",str(time.clock()),")")
+            print("Fail to fetch users!","(",str(time.clock()),")")
             exit()
 
         
